@@ -1,0 +1,27 @@
+services:
+  autoparts.api:
+    build: ./autoparts_api
+    image: autoparts.api:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_HOST=autoparts.db
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=password
+      - DATABASE_NAME=autoparts
+    depends_on:
+      - autoparts.db
+    networks:
+      - autoparts-network
+  autoparts.db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=autoparts
+    ports:
+      - "3306:3306"
+    networks:
+      - autoparts-network
+networks:
+  autoparts-network:
+    driver: bridge
