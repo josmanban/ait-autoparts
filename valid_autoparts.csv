@@ -1,0 +1,16 @@
+code,name,description,stock,min_stock,unit_price,category,brand,provider,storage_location
+APA-031,"Filtro de Combustible","Filtro de combustible para motores diésel.",45,10,25.00,Motor,Toyota,"Proveedor A",AG-12-03
+APA-032,"Caja de Transferencia","Caja de transferencia para vehículos 4x4.",7,2,600.00,Transmision,Ford,"Proveedor B",AH-12-03
+APA-033,"Disco de Freno Trasero","Disco de freno trasero para vehículos compactos.",29,5,70.00,Frenos,Honda,"Proveedor C",AI-12-03
+APA-034,"Resorte de Suspensión","Resorte de suspensión para vehículos de pasajeros.",17,4,80.00,Suspension,Chevrolet,"Proveedor D",AJ-12-03
+APA-035,"Relé de Arranque","Relé de arranque para sistemas eléctricos de vehículos.",26,5,30.00,Electricos,Nissan,"Proveedor E",AK-12-03
+APA-036,"Bomba de Combustible","Bomba de combustible para motores de gasolina.",14,3,110.00,Motor,Toyota,"Proveedor A",AL-12-03
+APA-037,"Eje de Transmisión","Eje de transmisión para vehículos de tracción trasera.",9,2,250.00,Transmision,Ford,"Proveedor B",AM-12-03
+APA-038,"Pastillas de Freno de Disco","Pastillas de freno de disco para vehículos deportivos.",38,7,60.00,Frenos,Honda,"Proveedor C",AN-12-03
+APA-039,"Brazo de Control","Brazo de control para suspensión delantera.",12,3,85.00,Suspension,Chevrolet,"Proveedor D",AO-12-03
+APA-040,"Sensor de Temperatura","Sensor de temperatura para sistemas de enfriamiento.",24,5,40.00,Electricos,Nissan,"Proveedor E",AP-12-03
+APA-041,"Filtro de Cabina","Filtro de cabina para sistemas de ventilación de vehículos.",30,6,18.00,Motor,Toyota,"Proveedor A",AQ-12-03
+APA-042,"Caja de Cambios Automática","Caja de cambios automática para vehículos de lujo.",4,1,1200.00,Transmision,Ford,"Proveedor B",AR-12-03
+APA-043,"Disco de Freno Ventilado","Disco de freno ventilado para vehículos deportivos.",27,5,90.00,Frenos,Honda,"Proveedor C",AS-12-03
+APA-044,"Amortiguadores Traseros","Amortiguadores traseros para suspensión de vehículos.",15,3,100.00,Suspension,Chevrolet,"Proveedor D",AT-12-03
+APA-045,"Alternador de Alto Rendimiento","Alternador de alto rendimiento para sistemas eléctricos de vehículos.",7,2,180.00,Electricos,Nissan,"Proveedor E",AU-12-03

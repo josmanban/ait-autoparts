@@ -1,0 +1,4 @@
+code,name,description,stock,min_stock,unit_price,category,brand,provider,storage_location
+ZZZ-001,Part1,Description1,10,5,100.00,Motor,Marca,ProvedorA,ZA-12-03
+ZZZ-002,Part2,Description2,20,10,invalid_price,Motor,Marca,ProvedorA,BB-13-04
+ZZZ-003,Part3,Description3,30,15,300.00,Motor,Marca,ProvedorA,CC-14-05
