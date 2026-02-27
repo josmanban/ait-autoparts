@@ -73,3 +73,19 @@ Instrucciones para el envío del desafío.
 - El repositorio de preferencia debe ser privado con permisos compartidos a los
 siguientes usuarios enzovillarrea@aitsolutions.com.ar,
 vanesagarnica@aitsolutions.com.ar y gustavomenacba@gmail.com
+
+
+
+To check unit test coverage with the coverage package in your Django project:
+
+Install coverage (if not already):
+pip install coverage
+
+Run your tests with coverage:
+coverage run --source=autoparts manage.py test
+
+Generate a coverage report:
+coverage report
+For an HTML report:
+coverage html
+Then open htmlcov/index.html in your browser.
