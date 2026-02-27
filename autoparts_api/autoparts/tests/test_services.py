@@ -4,6 +4,7 @@ from autoparts.models import AutoPart, Category, Brand, Provider
 from openpyxl import Workbook, load_workbook
 from io import BytesIO
 
+
 class AutoPartsImporterTestCase(TestCase):
     def setUp(self):
         self.category = Category.objects.get_or_create(name="Motor")
@@ -11,33 +12,44 @@ class AutoPartsImporterTestCase(TestCase):
         self.provider = Provider.objects.get_or_create(name="ProvedorA")
 
     def test_import_valid_csv(self):
-        csv_content = """code,name,description,stock,min_stock,unit_price,category,brand,provider,storage_location
-APA-001,Part1,Description1,10,5,100.00,Motor,Marca,ProvedorA,AA-12-03
-APA-002,Part2,Description2,20,10,200.00,Motor,Marca,ProvedorA,BB-13-04"""
-        file = BytesIO(csv_content.encode('utf-8'))
-        importer = AutoPartsImporter(file)
-        result = importer.import_from_csv()
-        self.assertEqual(result['count'], 2)
-        self.assertEqual(AutoPart.objects.count(), 2)
+        with open('autoparts/tests/valid_autoparts.csv', 'rb') as file:
+            importer = AutoPartsImporter(file)
+            result = importer.import_from_csv()
+            self.assertEqual(result['count'], 15)
+            self.assertEqual(AutoPart.objects.count(), 15)
 
+    def test_import_csv_with_some_errors(self):
+        with open('autoparts/tests/valid_with_some_errors.csv', 'rb') as file:
+            importer = AutoPartsImporter(file)
+            result = importer.import_from_csv()
+            self.assertEqual(AutoPart.objects.count(), 2)
+            self.assertTrue(AutoPart.objects.filter(code="ZZZ-001").exists())
+            self.assertTrue(AutoPart.objects.filter(code="ZZZ-003").exists())
+            self.assertEqual(result['count'], 2)
+            self.assertIn("A valid number is required.", result['errors'][2]['unit_price'][0])
 
-    def test_import_invalid_csv(self):
-        csv_content = """code,name,description,stock,min_stock,unit_price,category,brand,provider,storage_location
-APA-001,Part1,Description1,10,5,100.00,Motor,Marca,ProvedorA,AAA-12-03
-AA-002,Part2,Description2,20,10,invalid_price,Motor,Marca,ProvedorA,BB-13-04
-AA-003,Part3,Description3,30,15,300.00,Motor,Marca,ProvedorA,CC-14-05"""
+    def test_import_csv_with_critical_errors(self):
+        with open('autoparts/tests/fail_critical_errors.csv', 'rb') as file:
+            importer = AutoPartsImporter(file)
+            with self.assertRaises(CriticalErrorException) as context:
+                importer.import_from_csv()
+            self.assertIn("Import failed due to validation errors", str(context.exception))
+            self.assertIn("Storage location must be in the format 'AA-12-03'", context.exception.summary["errors"][1]['storage_location'][0])
+            self.assertIn("Code must be in the format 'AAA-001'", context.exception.summary["errors"][2]['code'][0])
+            self.assertIn("A valid number is required.", context.exception.summary["errors"][2]['unit_price'][0])
+            self.assertIn("Code must be in the format 'AAA-001'", context.exception.summary["errors"][3]['code'][0])
+            self.assertEqual(AutoPart.objects.count(), 0)
 
-        file = BytesIO(csv_content.encode('utf-8'))
-        importer = AutoPartsImporter(file)
-        with self.assertRaises(CriticalErrorException) as context:
-            importer.import_from_csv()
-
-        self.assertIn("Import failed due to validation errors", str(context.exception))
-        self.assertIn("Storage location must be in the format 'AA-12-03'", context.exception.errors[0]['storage_location'][0])
-        self.assertIn("Code must be in the format 'AAA-001'", context.exception.errors[1]['code'][0])
-        self.assertIn("A valid number is required.", context.exception.errors[1]['unit_price'][0])
-        self.assertIn("Code must be in the format 'AAA-001'", context.exception.errors[2]['code'][0])
-        self.assertEqual(AutoPart.objects.count(), 0)
+    def test_import_csv_with_critical_errors_global(self):
+        with open('autoparts/tests/fail_critical_errors_global.csv', 'rb') as file:
+            importer = AutoPartsImporter(file)
+            with self.assertRaises(CriticalErrorException) as context:
+                importer.import_from_csv()
+            self.assertIn("Import failed due to validation errors", str(context.exception))
+            self.assertIn("Duplicate codes found in the input data.", context.exception.summary["global_errors"])
+            self.assertIn("Duplicate storage locations found in the input data.", context.exception.summary["global_errors"])
+            self.assertIn("Duplicate name and brand combinations found in the input data.", context.exception.summary["global_errors"])
+            self.assertEqual(AutoPart.objects.count(), 0)
 
 class AutoPartsExporterTestCase(TestCase):
     def setUp(self):

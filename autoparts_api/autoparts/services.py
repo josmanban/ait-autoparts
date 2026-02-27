@@ -55,37 +55,38 @@ class AutoPartsImporter:
         io_string = io.StringIO('\n'.join(file_decoded))
         reader = csv.DictReader(io_string)
         data_list = list(reader)
-        errors = []
-        fail= False
+        errors = {}
 
         autoparts_serializer = AutoPartCSVSerializer(
             data=data_list, 
             many=True)
 
-        # aux_data = autoparts_serializer.to_internal_value(autoparts_serializer.initial_data)
-        # only validate the data without saving to the database
-        # to check for critical errors before any data is saved
-        # autoparts_serializer.validate(aux_data)
-
+        # only validate at list levet to check for
+        # critical errors before any data is saved
+        autoparts_serializer.is_valid()
         
-        # validate one by one and save valid records
+        # validate one by one because we want to collect all errors and not stop at the first one
         count = 0
-        for data in data_list:
+        errors_count=0
+        for row, data in enumerate(data_list, start=1):
             serializer = AutoPartCSVSerializer(data=data)
             if serializer.is_valid():
                 serializer.save()
                 count += 1
             else:
-                errors.append(serializer.errors)
+                errors[row] = serializer.errors
+                errors_count += 1
     
         # Critical error condition
-        if len(errors) > count * 0.5:  # If more than 50% of the records have errors, consider it a critical failure
+        if errors_count > count * 0.5:  # If more than 50% of the records have errors, consider it a critical failure
             transaction.set_rollback(True)
-            fail = True
-            raise CriticalErrorException("Import failed due to validation errors", errors)
-        
-        
+            raise CriticalErrorException("Import failed due to validation errors", {
+                'count':0,
+                'errors': errors,
+                'global_errors':None,
+                'fail': True
+            })
 
-        return {'count': count, 'errors': errors, 'fail': fail}
+        return {'count': count, 'errors': errors, 'global_errors':None, 'fail': False}
         
     
