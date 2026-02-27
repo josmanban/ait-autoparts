@@ -22,6 +22,20 @@ services:
       - "3306:3306"
     networks:
       - autoparts-network
+  autoparts.client:
+    build: 
+      context: ./autoparts-client
+      args:
+        NEXT_PUBLIC_API_URL: http://autoparts.api:8000
+    image: autoparts.client:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://autoparts.api:8000
+    depends_on:
+      - autoparts.api
+    networks:
+      - autoparts-network
 networks:
   autoparts-network:
     driver: bridge
