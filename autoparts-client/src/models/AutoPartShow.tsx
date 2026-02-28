@@ -3,7 +3,7 @@ import { Brand } from "./Brand";
 import { Category } from "./Category";
 
 export interface AutoPartShow {
-  code?: string;
+  code: string;
   name: string;
   description: string;
   stock: number;

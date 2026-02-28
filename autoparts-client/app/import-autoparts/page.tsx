@@ -122,7 +122,7 @@ export default function ImportAutoparts(){
                                                 <Typography variant="subtitle1">Record {key}:</Typography>
                                                 {Object.entries(value).map(([field, errors]) => (
                                                     <Typography key={field} variant="body2" color="error">
-                                                        {field}: {errors.join(', ')}
+                                                        {field}: {(errors as string[]).join(', ')}
                                                     </Typography>
                                                 ))}
                                             </ListItemText>
