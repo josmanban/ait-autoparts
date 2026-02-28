@@ -217,7 +217,6 @@ export default function AutopartSaveForm(
 
     return (
         <Grid container spacing={2}>
-        <p>{JSON.stringify(formData)}</p>
         <form onSubmit={handleSubmit}>
             {props.initialData && (
             <TextField 
