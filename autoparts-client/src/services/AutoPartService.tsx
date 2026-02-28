@@ -75,6 +75,4 @@ export default function AutoPartService() {
         exportAutoParts,
         importAutoParts
     };
-        
-
 }
