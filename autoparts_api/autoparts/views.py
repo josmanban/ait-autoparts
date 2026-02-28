@@ -14,7 +14,7 @@ from rest_framework import status
 @method_decorator(
     name='list', 
     decorator=swagger_auto_schema(
-        operation_description="Retrieve a list of auto parts with optional filtering by critical stock levels."
+        operation_description="Retrieve a list of auto parts with optional filtering by category name, brand name, provider name, critical stock level, page and search criteria (name, description, code)."
     ))
 @method_decorator(
     name='create',
