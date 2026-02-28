@@ -1,91 +1,56 @@
-Descripción del desafío
-Desarrollar una aplicación web para gestionar un catálogo de autopartes con CRUD
-completo, importación y exportación de datos.
+# AutoParts API
 
-Requisitos
-Gestión de Artículos
-Cada artículo debe tener:
-• Código de pieza (único)
-• Nombre/Descripción
-• Marca
-• Categoría (Frenos, Motor, Suspensión, etc.)
-• Stock actual
-• Stock mínimo
-• Precio unitario
-• Ubicación en depósito
-• Proveedor
+## Setup
 
-Funcionalidades:
-• Listado con paginación y búsqueda
-• Filtros por categoría y stock crítico (stock < stock mínimo)
-• Crear, editar y eliminar artículos
-• *Importar artículos desde archivo CSV*
-• *Exportar a Excel (.xlsx)* con todos los campos
-• Indicador visual de stock crítico
-Importación CSV - Especificaciones
+1. **Clone the repository**
+    ```bash
+    git clone <repository-url>
+    cd autoparts_api
+    ```
 
-Formato esperado del CSV:
-csv
-codigo_pieza,nombre,marca,categoria,stock_actual,stock_minimo,precio_unitario,ubicacion,pr
-oveedor
-FRE-001,Pastillas de freno delanteras,Bosch,Frenos,50,10,1500.00,A-12-3,AutoPartes SA
-MOT-045,Filtro de aceite,Mann,Motor,120,20,850.50,B-05-1,Repuestos del Sur
+2. **Create a virtual environment**
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    ```
 
-Funcionalidades:
-• Validar formato y campos obligatorios
-• Detectar y reportar errores (códigos duplicados, datos inválidos)
-• Mostrar resumen de importación (exitosos, fallidos)
-• No importar ningún registro si hay errores críticos (transaccional)
+3. **Install dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Stack Tecnológico
-• *Frontend:* React + Material UI
-• *Backend:* Django + DRF
-• *Base de datos:* MySQL
-• *Containerización:* Docker + Docker Compose
-Testing Requerido
+4. **Configure environment variables**
+    ```bash
+    cp .env.example .env
+    # Edit .env with your settings
+    ```
 
-Backend (obligatorio):
-• Tests de API endpoints (GET, POST, PUT, DELETE)
-• Validaciones de modelo (unicidad, campos obligatorios)
-• Tests de importación CSV (casos válidos e inválidos)
-• Tests de exportación a Excel
-• Cobertura mínima: 70%
+5. **Run migrations**
+    ```bash
+    python manage.py migrate
+    ```
 
-Frontend (recomendado):
-• Tests de componentes principales
-• Tests de formularios y validaciones
-• Usar Jest + React Testing Library
+6. **Create a superuser** (optional)
+    ```bash
+    python manage.py createsuperuser
+    ```
 
-Entregables
-1. Repositorio Git con código fuente
-2. README con:
-- Instrucciones de instalación y ejecución
-- Comandos para correr tests
-- Documentación de endpoints
-- Formato del CSV para importación
-3. Docker Compose funcional
-4. Datos de ejemplo precargados
-5. Tests ejecutándose correctamente
-6. Archivo CSV de ejemplo para testing
+## Running the Project
 
-Instrucciones para el envío del desafío.
-- Enviar en link del repositorio de la aplicación.
-- El repositorio de preferencia debe ser privado con permisos compartidos a los
-siguientes usuarios enzovillarrea@aitsolutions.com.ar,
-vanesagarnica@aitsolutions.com.ar y gustavomenacba@gmail.com
+Start the development server:
+```bash
+python manage.py runserver
+```
 
+The API will be available at `http://127.0.0.1:8000/`
 
+## API Documentation
 
-To check unit test coverage with the coverage package in your Django project:
+Visit `http://127.0.0.1:8000/api/docs/` for API endpoints documentation.
 
-Install coverage (if not already):
-pip install coverage
+## Testing
 
-Run your tests with coverage:
-coverage run --source=autoparts manage.py test
-
-Generate a coverage report:
-coverage report
-For an HTML report:
-coverage html
-Then open htmlcov/index.html in your browser.
+Run tests with:
+```bash
+python manage.py test
+```
