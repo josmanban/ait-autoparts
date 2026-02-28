@@ -68,14 +68,23 @@ class AutoPartsImporter:
         # validate one by one because we want to collect all errors and not stop at the first one
         count = 0
         errors_count=0
+        succes_records = []
+        failed_records = []
         for row, data in enumerate(data_list, start=1):
             serializer = AutoPartCSVSerializer(data=data)
             if serializer.is_valid():
                 serializer.save()
                 count += 1
+                succes_records.append(','.join(data.values()))                
             else:
                 errors[row] = serializer.errors
                 errors_count += 1
+                # parse data into csv string for failed records
+                failed_records.append({
+                    'row': row,
+                    'data': ','.join(data.values()),
+                    'errors': serializer.errors
+                })
     
         # Critical error condition
         if errors_count > count * 0.5:  # If more than 50% of the records have errors, consider it a critical failure
@@ -84,9 +93,11 @@ class AutoPartsImporter:
                 'count':0,
                 'errors': errors,
                 'global_errors':None,
-                'fail': True
+                'fail': True,
+                'success_records': succes_records,
+                'failed_records': failed_records
             })
 
-        return {'count': count, 'errors': errors, 'global_errors':None, 'fail': False}
+        return {'count': count, 'errors': errors, 'global_errors':None, 'fail': False, 'success_records': succes_records, 'failed_records': failed_records}
         
     

@@ -112,8 +112,10 @@ class AutoPartListCSVSerializer(serializers.ListSerializer):
                 'count':0,
                 'errors': None,
                 'global_errors':errors,
-                'fail': True
-            })        
+                'fail': True,
+                'success_records': [],
+                'failed_records': [{'row': row, 'data': ','.join(item.values()), 'errors':[]} for row,item in enumerate(data, start=1)]
+            })
         return True
 
 class AutoPartCSVSerializer(serializers.ModelSerializer):
