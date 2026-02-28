@@ -1,27 +1,32 @@
 services:
+  autoparts.db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=autoparts
+      - MYSQL_USER=myuser
+      - MYSQL_PASSWORD=mypassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./autoparts_dump.sql:/docker-entrypoint-initdb.d/autoparts_dump.sql
+    networks:
+      - autoparts-network
   autoparts.api:
     build: ./autoparts_api
     image: autoparts.api:latest
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_HOST=autoparts.db
-      - DATABASE_USER=root
-      - DATABASE_PASSWORD=password
-      - DATABASE_NAME=autoparts
+      - MYSQL_HOST=autoparts.db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=rootpassword
+      - MYSQL_DATABASE=autoparts
+      - MYSQL_PORT=3306
     depends_on:
       - autoparts.db
     networks:
-      - autoparts-network
-  autoparts.db:
-    image: mysql:latest
-    environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=autoparts
-    ports:
-      - "3306:3306"
-    networks:
-      - autoparts-network
+      - autoparts-network  
   autoparts.client:
     build: 
       context: ./autoparts-client
