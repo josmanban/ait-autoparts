@@ -115,7 +115,41 @@ cd ./autoparts_api
 python manage.py test
 ```
 
-A test coverage report is generated in the `htmlcov` folder using the `coverage` package. We test views and services, including the Excel export and import features.
+A test coverage report could be generated in the `htmlcov/index.html` file using the `coverage` package. We test views and services, including the Excel export and import features.
+```bash
+#Run your tests with coverage:
+coverage run --source=autoparts manage.py test
+
+#Generate a coverage report:
+coverage report
+#For an HTML report:
+coverage html
+#Then open htmlcov/index.html in your browser.
+```
+
+This is the current backendend testing coverage:
+```bash
+Name                                   Stmts   Miss  Cover
+----------------------------------------------------------
+autoparts/__init__.py                      0      0   100%
+autoparts/admin.py                         1      0   100%
+autoparts/apps.py                          3      0   100%
+autoparts/exceptions.py                    4      0   100%
+autoparts/filters.py                      15      1    93%
+autoparts/migrations/0001_initial.py       7      0   100%
+autoparts/migrations/__init__.py           0      0   100%
+autoparts/models.py                       29      4    86%
+autoparts/serializers.py                  86      3    97%
+autoparts/services.py                     54      0   100%
+autoparts/tests/__init__.py                0      0   100%
+autoparts/tests/test_services.py          71      0   100%
+autoparts/tests/test_views.py            232      0   100%
+autoparts/urls.py                          9      0   100%
+autoparts/validators.py                    3      0   100%
+autoparts/views.py                        72      3    96%
+----------------------------------------------------------
+TOTAL                                    586     11    98%
+```
 
 Run Autoparts client tests:
 
