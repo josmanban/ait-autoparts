@@ -30,7 +30,7 @@ export default function AutoPartTable(props:{
                 <TableHead>
                 <TableRow>                    
                     <TableCell>Code</TableCell>
-                    <TableCell>Name</TableCell>
+                    <TableCell align="left">Name</TableCell>
                     <TableCell align="left" sx={{ minWidth: 120 }}>Stock</TableCell>
                     <TableCell align="right">Min Stock</TableCell>
                     <TableCell align="right">Unit Price</TableCell>
@@ -48,7 +48,7 @@ export default function AutoPartTable(props:{
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                         <TableCell>{autoPart.code}</TableCell>
-                        <TableCell align="right">{autoPart.name}</TableCell>
+                        <TableCell align="left">{autoPart.name}</TableCell>
                         <TableCell align="left" sx={{ minWidth: 120 }}>
                             {autoPart.stock}
                             <CriticalStockChip min_stock={autoPart.min_stock} stock={autoPart.stock} />

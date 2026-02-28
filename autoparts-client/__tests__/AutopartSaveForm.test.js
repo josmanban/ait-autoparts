@@ -75,4 +75,35 @@ describe('AutopartSaveForm Component', () => {
         expect(storageLocationTextField).toBeInTheDocument();
         await waitFor(() => expect(screen.getByDisplayValue('AD-12-03')).toBeInTheDocument());
     });
+
+    test('validates fields and shows error messages', async () => {
+        render(<AutopartSaveForm initialData={autopartToEdit} />);
+        // wait for async state update to complete
+        await waitFor(() => expect(screen.getByDisplayValue('APA-001')).toBeInTheDocument());
+
+        const nameTextField = screen.getByRole('textbox', { name: 'Name' });
+        fireEvent.change(nameTextField, { target: { value: '' } });
+        fireEvent.blur(nameTextField);
+        await waitFor(() => expect(screen.getByText('Name is required')).toBeInTheDocument());
+
+        const unitPriceTextField = screen.getByRole('spinbutton', { name: 'Unit Price' });
+        fireEvent.change(unitPriceTextField, { target: { value: '-10' } });
+        fireEvent.blur(unitPriceTextField);
+        await waitFor(() => expect(screen.getByText('Unit price must be non-negative')).toBeInTheDocument());
+
+        const stockTextField = screen.getByRole('spinbutton', { name: 'Stock' });
+        fireEvent.change(stockTextField, { target: { value: '-15' } });
+        fireEvent.blur(stockTextField);
+        await waitFor(() => expect(screen.getByText('Stock must be non-negative')).toBeInTheDocument());
+
+        const minStockTextField = screen.getByRole('spinbutton', { name: 'Min Stock' });
+        fireEvent.change(minStockTextField, { target: { value: '' } });
+        fireEvent.blur(minStockTextField);
+        await waitFor(() => expect(screen.getByText('Minimum stock is required')).toBeInTheDocument());
+
+        const locationTextField = screen.getByRole('textbox', { name: 'Storage Location' });
+        fireEvent.change(locationTextField, { target: { value: 'AA2233' } });
+        fireEvent.blur(locationTextField);
+        await waitFor(() => expect(screen.getByText('Storage location must be in format XX-NN-NN')).toBeInTheDocument());
+    });
 });
