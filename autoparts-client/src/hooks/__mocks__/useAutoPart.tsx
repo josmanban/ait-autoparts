@@ -4,8 +4,7 @@ import { AutoPartShow } from "../../models/AutoPartShow";
 import { AutoPartImportResponse } from "../../services/AutoPartService";
 import { AutoPartPaginationResponse } from "../../services/AutoPartService";
 
-const autoparts = [
-  {
+const autoparts = [  {
     "code": "APA-001",
     "name": "Filtro de Aceite",
     "description": "Filtro de aceite para motores de gasolina.",

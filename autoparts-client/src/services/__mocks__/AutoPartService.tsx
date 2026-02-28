@@ -1,5 +1,5 @@
 'use strict';
-const autoparts = [
+export const autoparts = [
   {
     "code": "APA-001",
     "name": "Filtro de Aceite",
