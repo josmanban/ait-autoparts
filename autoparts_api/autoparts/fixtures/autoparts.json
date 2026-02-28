@@ -1,0 +1,557 @@
+[
+{
+    "model": "autoparts.category",
+    "pk": 1,
+    "fields": {
+        "name": "Motor"
+    }
+},
+{
+    "model": "autoparts.category",
+    "pk": 2,
+    "fields": {
+        "name": "Transmision"
+    }
+},
+{
+    "model": "autoparts.category",
+    "pk": 3,
+    "fields": {
+        "name": "Frenos"
+    }
+},
+{
+    "model": "autoparts.category",
+    "pk": 4,
+    "fields": {
+        "name": "Suspension"
+    }
+},
+{
+    "model": "autoparts.category",
+    "pk": 5,
+    "fields": {
+        "name": "Electricos"
+    }
+},
+{
+    "model": "autoparts.brand",
+    "pk": 1,
+    "fields": {
+        "name": "Toyota"
+    }
+},
+{
+    "model": "autoparts.brand",
+    "pk": 2,
+    "fields": {
+        "name": "Ford"
+    }
+},
+{
+    "model": "autoparts.brand",
+    "pk": 3,
+    "fields": {
+        "name": "Honda"
+    }
+},
+{
+    "model": "autoparts.brand",
+    "pk": 4,
+    "fields": {
+        "name": "Chevrolet"
+    }
+},
+{
+    "model": "autoparts.brand",
+    "pk": 5,
+    "fields": {
+        "name": "Nissan"
+    }
+},
+{
+    "model": "autoparts.provider",
+    "pk": 1,
+    "fields": {
+        "name": "Proveedor A"
+    }
+},
+{
+    "model": "autoparts.provider",
+    "pk": 2,
+    "fields": {
+        "name": "Proveedor B"
+    }
+},
+{
+    "model": "autoparts.provider",
+    "pk": 3,
+    "fields": {
+        "name": "Proveedor C"
+    }
+},
+{
+    "model": "autoparts.provider",
+    "pk": 4,
+    "fields": {
+        "name": "Proveedor D"
+    }
+},
+{
+    "model": "autoparts.provider",
+    "pk": 5,
+    "fields": {
+        "name": "Proveedor E"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-001",
+    "fields": {
+        "name": "Filtro de Aceite",
+        "description": "Filtro de aceite para motores de gasolina.",
+        "stock": 50,
+        "min_stock": 10,
+        "unit_price": "15.99",
+        "category": 1,
+        "brand": 1,
+        "provider": 1,
+        "storage_location": "AD-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-002",
+    "fields": {
+        "name": "Pastillas de Freno",
+        "description": "Juego de pastillas de freno para vehículos compactos.",
+        "stock": 30,
+        "min_stock": 5,
+        "unit_price": "45.50",
+        "category": 3,
+        "brand": 2,
+        "provider": 2,
+        "storage_location": "BB-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-003",
+    "fields": {
+        "name": "Amortiguadores",
+        "description": "Amortiguadores para suspensión trasera.",
+        "stock": 20,
+        "min_stock": 5,
+        "unit_price": "120.00",
+        "category": 4,
+        "brand": 3,
+        "provider": 3,
+        "storage_location": "CC-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-004",
+    "fields": {
+        "name": "Bujías",
+        "description": "Juego de bujías para motores de 4 cilindros.",
+        "stock": 100,
+        "min_stock": 20,
+        "unit_price": "8.75",
+        "category": 5,
+        "brand": 4,
+        "provider": 4,
+        "storage_location": "DD-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-005",
+    "fields": {
+        "name": "Correa de Distribución",
+        "description": "Correa de distribución para motores de 6 cilindros.",
+        "stock": 15,
+        "min_stock": 3,
+        "unit_price": "75.00",
+        "category": 1,
+        "brand": 5,
+        "provider": 5,
+        "storage_location": "EE-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-006",
+    "fields": {
+        "name": "Radiador",
+        "description": "Radiador para sistemas de enfriamiento de vehículos.",
+        "stock": 10,
+        "min_stock": 2,
+        "unit_price": "200.00",
+        "category": 1,
+        "brand": 1,
+        "provider": 1,
+        "storage_location": "FF-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-007",
+    "fields": {
+        "name": "Caja de Cambios",
+        "description": "Caja de cambios manual para vehículos de pasajeros.",
+        "stock": 5,
+        "min_stock": 1,
+        "unit_price": "500.00",
+        "category": 2,
+        "brand": 2,
+        "provider": 2,
+        "storage_location": "GG-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-008",
+    "fields": {
+        "name": "Disco de Freno",
+        "description": "Disco de freno ventilado para vehículos deportivos.",
+        "stock": 25,
+        "min_stock": 5,
+        "unit_price": "80.00",
+        "category": 3,
+        "brand": 3,
+        "provider": 3,
+        "storage_location": "HH-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-009",
+    "fields": {
+        "name": "Alternador",
+        "description": "Alternador para sistemas eléctricos de vehículos.",
+        "stock": 8,
+        "min_stock": 2,
+        "unit_price": "150.00",
+        "category": 5,
+        "brand": 4,
+        "provider": 4,
+        "storage_location": "II-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-010",
+    "fields": {
+        "name": "Amortiguadores Delanteros",
+        "description": "Amortiguadores delanteros para suspensión de vehículos.",
+        "stock": 18,
+        "min_stock": 4,
+        "unit_price": "110.00",
+        "category": 4,
+        "brand": 5,
+        "provider": 5,
+        "storage_location": "JJ-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-011",
+    "fields": {
+        "name": "Filtro de Aire",
+        "description": "Filtro de aire para motores diésel.",
+        "stock": 40,
+        "min_stock": 8,
+        "unit_price": "20.00",
+        "category": 1,
+        "brand": 1,
+        "provider": 1,
+        "storage_location": "KK-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-012",
+    "fields": {
+        "name": "Embrague",
+        "description": "Kit de embrague para vehículos de transmisión manual.",
+        "stock": 12,
+        "min_stock": 3,
+        "unit_price": "250.00",
+        "category": 2,
+        "brand": 2,
+        "provider": 2,
+        "storage_location": "LL-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-013",
+    "fields": {
+        "name": "Pastillas de Freno Traseras",
+        "description": "Juego de pastillas de freno traseras para vehículos compactos.",
+        "stock": 35,
+        "min_stock": 5,
+        "unit_price": "40.00",
+        "category": 3,
+        "brand": 3,
+        "provider": 3,
+        "storage_location": "MM-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-014",
+    "fields": {
+        "name": "Bomba de Agua",
+        "description": "Bomba de agua para sistemas de enfriamiento de vehículos.",
+        "stock": 10,
+        "min_stock": 2,
+        "unit_price": "90.00",
+        "category": 1,
+        "brand": 4,
+        "provider": 4,
+        "storage_location": "NN-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-015",
+    "fields": {
+        "name": "Suspensión Neumática",
+        "description": "Sistema de suspensión neumática para vehículos de lujo.",
+        "stock": 5,
+        "min_stock": 1,
+        "unit_price": "800.00",
+        "category": 4,
+        "brand": 5,
+        "provider": 5,
+        "storage_location": "OO-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-016",
+    "fields": {
+        "name": "Batería de Vehículo",
+        "description": "Batería de 12V para sistemas eléctricos de vehículos.",
+        "stock": 22,
+        "min_stock": 5,
+        "unit_price": "120.00",
+        "category": 5,
+        "brand": 1,
+        "provider": 1,
+        "storage_location": "PP-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-017",
+    "fields": {
+        "name": "Inyector de Combustible",
+        "description": "Inyector de combustible para motores de gasolina.",
+        "stock": 16,
+        "min_stock": 3,
+        "unit_price": "85.00",
+        "category": 1,
+        "brand": 2,
+        "provider": 2,
+        "storage_location": "QQ-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-018",
+    "fields": {
+        "name": "Cilindro Maestro de Freno",
+        "description": "Cilindro maestro de freno para sistemas hidráulicos.",
+        "stock": 9,
+        "min_stock": 2,
+        "unit_price": "110.00",
+        "category": 3,
+        "brand": 3,
+        "provider": 3,
+        "storage_location": "RR-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-019",
+    "fields": {
+        "name": "Bujes de Suspensión",
+        "description": "Bujes de goma para suspensión delantera.",
+        "stock": 28,
+        "min_stock": 6,
+        "unit_price": "35.00",
+        "category": 4,
+        "brand": 4,
+        "provider": 4,
+        "storage_location": "SS-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-020",
+    "fields": {
+        "name": "Regulador de Voltaje",
+        "description": "Regulador de voltaje para alternadores de vehículos.",
+        "stock": 11,
+        "min_stock": 2,
+        "unit_price": "65.00",
+        "category": 5,
+        "brand": 5,
+        "provider": 5,
+        "storage_location": "TT-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-021",
+    "fields": {
+        "name": "Correa de Serpentín",
+        "description": "Correa de serpentín para transmisión de potencia.",
+        "stock": 33,
+        "min_stock": 7,
+        "unit_price": "28.00",
+        "category": 1,
+        "brand": 1,
+        "provider": 1,
+        "storage_location": "UU-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-022",
+    "fields": {
+        "name": "Válvula Solenoide",
+        "description": "Válvula solenoide para sistemas de transmisión.",
+        "stock": 14,
+        "min_stock": 3,
+        "unit_price": "95.00",
+        "category": 2,
+        "brand": 2,
+        "provider": 2,
+        "storage_location": "VV-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-023",
+    "fields": {
+        "name": "Pastilla de Freno Cerámica",
+        "description": "Pastillas de freno de cerámica de alta durabilidad.",
+        "stock": 42,
+        "min_stock": 8,
+        "unit_price": "55.00",
+        "category": 3,
+        "brand": 3,
+        "provider": 3,
+        "storage_location": "WW-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-024",
+    "fields": {
+        "name": "Rótula de Suspensión",
+        "description": "Rótula de suspensión para dirección de vehículos.",
+        "stock": 19,
+        "min_stock": 4,
+        "unit_price": "75.00",
+        "category": 4,
+        "brand": 4,
+        "provider": 4,
+        "storage_location": "XX-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-025",
+    "fields": {
+        "name": "Motor de Arranque",
+        "description": "Motor de arranque para encendido de vehículos.",
+        "stock": 6,
+        "min_stock": 1,
+        "unit_price": "180.00",
+        "category": 5,
+        "brand": 5,
+        "provider": 5,
+        "storage_location": "YY-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-026",
+    "fields": {
+        "name": "Termostato",
+        "description": "Termostato para control de temperatura de refrigerante.",
+        "stock": 27,
+        "min_stock": 5,
+        "unit_price": "32.00",
+        "category": 1,
+        "brand": 1,
+        "provider": 1,
+        "storage_location": "ZZ-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-027",
+    "fields": {
+        "name": "Convertidor Torque",
+        "description": "Convertidor de torque para transmisiones automáticas.",
+        "stock": 3,
+        "min_stock": 1,
+        "unit_price": "450.00",
+        "category": 2,
+        "brand": 2,
+        "provider": 2,
+        "storage_location": "AB-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-028",
+    "fields": {
+        "name": "Tubo de Escape",
+        "description": "Tubo de escape para sistemas de combustión de vehículos.",
+        "stock": 13,
+        "min_stock": 2,
+        "unit_price": "140.00",
+        "category": 1,
+        "brand": 3,
+        "provider": 3,
+        "storage_location": "AC-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-029",
+    "fields": {
+        "name": "Amortiguador de Vibraciones",
+        "description": "Amortiguador de vibraciones para motor y transmisión.",
+        "stock": 21,
+        "min_stock": 4,
+        "unit_price": "65.00",
+        "category": 4,
+        "brand": 4,
+        "provider": 4,
+        "storage_location": "AE-12-03"
+    }
+},
+{
+    "model": "autoparts.autopart",
+    "pk": "APA-030",
+    "fields": {
+        "name": "Sensor de Oxígeno",
+        "description": "Sensor de oxígeno para control de emisiones de vehículos.",
+        "stock": 31,
+        "min_stock": 6,
+        "unit_price": "55.00",
+        "category": 5,
+        "brand": 5,
+        "provider": 5,
+        "storage_location": "AF-12-03"
+    }
+}
+]
