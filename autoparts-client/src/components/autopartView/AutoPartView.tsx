@@ -12,6 +12,7 @@ import { TableContainer,
     TableBody,
     Paper,
  } from "@mui/material";
+import CriticalStockChip from "../criticalStockChip/CriticalStockChip";
 
 export default function AutoPartView(props:{
     code: string;
@@ -49,7 +50,12 @@ export default function AutoPartView(props:{
                     <TableBody>                        
                         <TableRow><TableCell>Name</TableCell><TableCell>{autopart?.name}</TableCell></TableRow>
                         <TableRow><TableCell>Description</TableCell><TableCell>{autopart?.description}</TableCell></TableRow>
-                        <TableRow><TableCell>Stock</TableCell><TableCell>{autopart?.stock}</TableCell></TableRow>
+                        <TableRow><TableCell>Stock</TableCell><TableCell>
+                            {autopart?.stock} 
+                            <CriticalStockChip 
+                                min_stock={autopart?.min_stock || 0} 
+                                stock={autopart?.stock || 0} />
+                            </TableCell></TableRow>
                         <TableRow><TableCell>Min Stock</TableCell><TableCell>{autopart?.min_stock}</TableCell></TableRow>
                         <TableRow><TableCell>Unit Price</TableCell><TableCell>{autopart?.unit_price}</TableCell></TableRow>
                         <TableRow><TableCell>Category</TableCell><TableCell>{autopart?.category.name}</TableCell></TableRow>
