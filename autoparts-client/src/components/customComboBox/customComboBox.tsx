@@ -16,6 +16,9 @@ function CustomComboBox<T>(props: {
     id:string,
     error?: boolean;
     helperText?: string;
+    fullWidth?: boolean;
+    margin?: "none" | "dense" | "normal";
+    sx?: any;
 }) {
     const { 
         options, 
@@ -31,8 +34,9 @@ function CustomComboBox<T>(props: {
 
     return (
         <FormControl
-            fullWidth
-            margin="normal"
+            fullWidth={props.fullWidth || true}
+            margin={props.margin || "normal"}
+            sx={props.sx}
         >
             <InputLabel id="demo-simple-select-label">{label}</InputLabel>
             <Select

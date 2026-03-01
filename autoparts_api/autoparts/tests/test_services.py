@@ -17,6 +17,8 @@ class AutoPartsImporterTestCase(TestCase):
             result = importer.import_from_csv()
             self.assertEqual(result['count'], 15)
             self.assertEqual(AutoPart.objects.count(), 15)
+            self.assertEqual(len(result['success_records']), 15)
+            self.assertEqual(len(result['failed_records']), 0)
 
     def test_import_csv_with_some_errors(self):
         with open('autoparts/tests/valid_with_some_errors.csv', 'rb') as file:
@@ -27,6 +29,8 @@ class AutoPartsImporterTestCase(TestCase):
             self.assertTrue(AutoPart.objects.filter(code="ZZZ-003").exists())
             self.assertEqual(result['count'], 2)
             self.assertIn("A valid number is required.", result['errors'][2]['unit_price'][0])
+            self.assertEqual(len(result['success_records']), 2)
+            self.assertEqual(len(result['failed_records']), 1)
 
     def test_import_csv_with_critical_errors(self):
         with open('autoparts/tests/fail_critical_errors.csv', 'rb') as file:
@@ -38,6 +42,8 @@ class AutoPartsImporterTestCase(TestCase):
             self.assertIn("Code must be in the format 'AAA-001'", context.exception.summary["errors"][2]['code'][0])
             self.assertIn("A valid number is required.", context.exception.summary["errors"][2]['unit_price'][0])
             self.assertIn("Code must be in the format 'AAA-001'", context.exception.summary["errors"][3]['code'][0])
+            self.assertEqual(len(context.exception.summary["success_records"]), 0)
+            self.assertEqual(len(context.exception.summary["failed_records"]), 3)
             self.assertEqual(AutoPart.objects.count(), 0)
 
     def test_import_csv_with_critical_errors_global(self):
@@ -49,6 +55,8 @@ class AutoPartsImporterTestCase(TestCase):
             self.assertIn("Duplicate codes found in the input data.", context.exception.summary["global_errors"])
             self.assertIn("Duplicate storage locations found in the input data.", context.exception.summary["global_errors"])
             self.assertIn("Duplicate name and brand combinations found in the input data.", context.exception.summary["global_errors"])
+            self.assertEqual(len(context.exception.summary["success_records"]), 0)
+            self.assertEqual(len(context.exception.summary["failed_records"]), 5)
             self.assertEqual(AutoPart.objects.count(), 0)
 
 class AutoPartsExporterTestCase(TestCase):
