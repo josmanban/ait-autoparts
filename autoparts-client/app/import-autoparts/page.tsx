@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 import useAutoPart from "@/src/hooks/useAutoPart";
 import {Button, FormControl, styled} from "@mui/material";
 import { useState } from "react";
-import { AutoPartImportResponse } from "@/src/services/AutoPartService";
+import { AutoPartImportResponse, FailedRecord } from "@/src/services/AutoPartService";
 import HttpError from "@/src/services/HttpError";
 import GlobalContext from "@/src/contexts/GlobalContext";
 import { useContext } from "react";
@@ -60,6 +60,8 @@ export default function ImportAutoparts(){
                     fail: true,
                     errors: error.body.errors,
                     globals: error.body.global_errors,
+                    failed_records: error.body.failed_records,
+                    success_records: error.body.success_records,
                 });
             } else {
                 setImportResponse(null);
@@ -111,20 +113,16 @@ export default function ImportAutoparts(){
                     <CardHeader title="Import Result" />
                     <CardContent>
                         <Typography>Total records processed: {importResponse.count}</Typography>
-                        {importResponse.errors && (
+                        {importResponse.success_records && (
                             <>
-                                <Typography variant="h6" color="error">Errors:</Typography>
-
+                                <Typography variant="h6" color="primary">Successfully Imported Records:</Typography>
                                 <List>
-                                    {Object.entries(importResponse.errors).map(([key, value]) => (
-                                        <ListItem key={key}>
+                                    {importResponse.success_records.map((record, index) => (
+                                        <ListItem key={index}>
                                             <ListItemText>
-                                                <Typography variant="subtitle1">Record {key}:</Typography>
-                                                {Object.entries(value).map(([field, errors]) => (
-                                                    <Typography key={field} variant="body2" color="error">
-                                                        {field}: {(errors as string[]).join(', ')}
-                                                    </Typography>
-                                                ))}
+                                                <Typography variant="body2" color="primary">
+                                                    {record}
+                                                </Typography>
                                             </ListItemText>
                                         </ListItem>
                                     ))}
@@ -147,6 +145,28 @@ export default function ImportAutoparts(){
                                 </List>
                             </>
                         )}
+                        {importResponse.failed_records && (
+                            <>
+                                <Typography variant="h6" color="error">Failed Records:</Typography>
+                                <List>
+                                    {importResponse.failed_records.map((record: FailedRecord, index: number) => (
+                                        <ListItem key={index}>
+                                            <ListItemText>
+                                                <Typography variant="subtitle1">Row {record.row}:</Typography>
+                                                <Typography variant="body2" color="error">
+                                                    Data: {record.data}
+                                                </Typography>
+                                                {Object.entries(record.errors).map(([field, errors]) => (
+                                                    <Typography key={field} variant="body2" color="error">
+                                                        {field}: {(errors as string[]).join(', ')}
+                                                    </Typography>
+                                                ))}
+                                            </ListItemText>
+                                        </ListItem>
+                                    ))}
+                                </List>
+                            </>
+                        )}                              
                     </CardContent>
                 </Card>
             )}

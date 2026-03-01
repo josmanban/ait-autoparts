@@ -13,7 +13,10 @@ function CategoryComboBox(
         id:string;
         error?: boolean;
         helperText?: string;
-        getOptionValue?: (option: Category) => string | number;    
+        getOptionValue?: (option: Category) => string | number;
+        fullWidth?: boolean;
+        margin?: "none" | "dense" | "normal";
+        sx?: any;
     }
 ){
 
@@ -42,6 +45,9 @@ function CategoryComboBox(
             id={props.id}
             error={props.error}
             helperText={props.helperText}
+            fullWidth={props.fullWidth}
+            margin={props.margin}
+            sx={props.sx}
         />
     )
 }

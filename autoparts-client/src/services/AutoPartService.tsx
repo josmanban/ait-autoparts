@@ -10,11 +10,19 @@ export interface AutoPartPaginationResponse {
     next: string | null;
 }
 
+export interface FailedRecord {
+    row: number;
+    data: string;
+    errors: object;
+}
+
 export interface AutoPartImportResponse {
     count: number;
     errors?: object;
     globals?: string[];
     fail: boolean;
+    failed_records?: FailedRecord[];
+    success_records?: string[];
 }
 
 export default function AutoPartService() {
