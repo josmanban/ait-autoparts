@@ -1,5 +1,5 @@
 services:
-  autoparts.db:
+  autoparts-db:
     image: mysql:latest
     environment:
       - MYSQL_ROOT_PASSWORD=rootpassword
@@ -12,33 +12,39 @@ services:
       - ./autoparts_dump.sql:/docker-entrypoint-initdb.d/autoparts_dump.sql
     networks:
       - autoparts-network
-  autoparts.api:
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 10
+  autoparts-api:
     build: ./autoparts_api
     image: autoparts.api:latest
     ports:
       - "8000:8000"
     environment:
-      - MYSQL_HOST=autoparts.db
+      - MYSQL_HOST=autoparts-db
       - MYSQL_USER=root
       - MYSQL_PASSWORD=rootpassword
       - MYSQL_DATABASE=autoparts
       - MYSQL_PORT=3306
     depends_on:
-      - autoparts.db
+      autoparts-db:
+        condition: service_healthy
     networks:
       - autoparts-network  
-  autoparts.client:
+  autoparts-client:
     build: 
       context: ./autoparts-client
       args:
-        NEXT_PUBLIC_API_URL: http://autoparts.api:8000
+        NEXT_PUBLIC_API_URL: http://autoparts-api:8000
     image: autoparts.client:latest
     ports:
       - "3000:3000"
     environment:
-      - NEXT_PUBLIC_API_URL=http://autoparts.api:8000
+      - NEXT_PUBLIC_API_URL=http://autoparts-api:8000
     depends_on:
-      - autoparts.api
+      autoparts-api:
+        condition: service_started
     networks:
       - autoparts-network
 networks:

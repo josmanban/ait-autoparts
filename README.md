@@ -30,13 +30,15 @@ docker compose up
 
 
 ```bash
-# Important! Add the following hostnames to your hosts file:
+# Important! Add the following hostnames to your hosts file if you want to reach the
+# containers by their service name from the host machine. This is mostly useful for
+# testing or if you mapped additional ports.
 # Linux/Mac: /etc/hosts
 # Windows: C:\Windows\System32\drivers\etc\hosts
 # 
-# 127.0.0.1 autoparts.api
-# 127.0.0.1 autoparts.client
-# 127.0.0.1 autoparts.db
+# 127.0.0.1 autoparts-api
+# 127.0.0.1 autoparts-client
+# 127.0.0.1 autoparts-db
 ```
 
 Then open http://localhost:3000 in your browser.
